@@ -1,6 +1,9 @@
 #coverage 측정에서 gcove(지 코브)를 사용?
 #shell script입력을 통해 .c 파일과 .txt파일을 받는다
 #testcase 파일에 주석이 있을수도 있다
+import sys
+
+testcase_file = sys.argv[1]
 
 entire_code = [
     "#include <stdlib.h>",
@@ -8,7 +11,7 @@ entire_code = [
     "#include <string.h>"
     ]
 
-f = open("triangle_test_cases.txt", "r")
+f = open(testcase_file, "r")
 
 function_declare = f.readline()
 
