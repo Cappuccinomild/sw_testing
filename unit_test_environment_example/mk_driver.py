@@ -32,7 +32,7 @@ function_declare = line
 
 #세미콜론 여부 검사
 if function_declare.find(";") == -1:
-    function_declare = function_declare.replace("\n", ";\n")
+    function_declare += ";"
 
 #코드에 함수 선언부 추가
 entire_code.append(function_declare)
@@ -68,13 +68,13 @@ while line:
     params = params[1:-1]
 
 
-    entire_code.append('    if( ' + function_name + ','.join(params) + ') == '+ expected_result +')  printf("test case '+ test_no +': pass\\n");')
-    entire_code.append('    else printf("test case '+ test_no + ': Fail\\n");')
+    entire_code.append('\tif( ' + function_name + ','.join(params) + ') == '+ expected_result +')  printf("test case '+ test_no +': pass\\n");')
+    entire_code.append('\telse printf("test case '+ test_no + ': Fail\\n");')
 
     line = f.readline()
 
 
-entire_code.append("    return 0;")
+entire_code.append("\treturn 0;")
 entire_code.append("}")
 
 print("\n".join(entire_code))
