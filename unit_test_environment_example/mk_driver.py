@@ -13,7 +13,22 @@ entire_code = [
 
 f = open(testcase_file, "r")
 
-function_declare = f.readline()
+
+#첫줄이 주석인 경우 체크
+line = f.readline()
+line = line.strip()  # 공백 제거
+
+if line.startswith('//'):  # 한 줄 주석 처리
+    line = f.readline()
+
+elif line.startswith('/*'):  # 여러 줄 주석 처리
+    while '*/' not in line:  # 주석의 끝을 찾을 때까지 읽기
+        line = f.readline().strip()
+        
+    line = f.readline()
+    line = line.strip()  # 공백 제거
+
+function_declare = line
 
 #세미콜론 여부 검사
 if function_declare.find(";") == -1:
@@ -31,7 +46,20 @@ function_name = function_name[:function_name.find("(") + 1]
 
 line = f.readline()
 while line:
-    
+
+    #주석인 경우 체크
+    line = line.strip()  # 공백 제거
+
+    if line.startswith('//'):  # 한 줄 주석 처리
+        line = f.readline()
+        continue
+
+    elif line.startswith('/*'):  # 여러 줄 주석 처리
+        while '*/' not in line:  # 주석의 끝을 찾을 때까지 읽기
+            line = f.readline().strip()
+            
+        line = f.readline()
+        line = line.strip()  # 공백 제거
     params = line.strip().replace("\n", "").split(" ")
     
     test_no = params[0]
