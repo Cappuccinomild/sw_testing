@@ -68,13 +68,13 @@ while line:
     params = params[1:-1]
 
 
-    entire_code.append('\tif( ' + function_name + ','.join(params) + ') == '+ expected_result +')  printf("test case '+ test_no +': pass\\n");')
-    entire_code.append('\telse printf("test case '+ test_no + ': Fail\\n");')
+    entire_code.append('    if( ' + function_name + ','.join(params) + ') == '+ expected_result +')  printf("test case '+ test_no +': pass\\n");')
+    entire_code.append('    else printf("test case '+ test_no + ': Fail\\n");')
 
     line = f.readline()
 
 
-entire_code.append("\treturn 0;")
+entire_code.append("    return 0;")
 entire_code.append("}")
 
 print("\n".join(entire_code))
