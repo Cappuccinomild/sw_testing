@@ -1,3 +1,3 @@
-gcc -o a.out -fprofile-arcs -ftest-coverage triangle.c triangle_driver.c
+gcc -o a.out triangle.c triangle_driver.c -fprofile-arcs -ftest-coverage 
 ./a.out
 gcov triangle_driver.c -bc
